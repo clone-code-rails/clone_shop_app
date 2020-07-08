@@ -24,7 +24,6 @@
               <td><%= number_to_currency(cart.pack.price * cart.quantity) %></td>
               <td>
                 <a href="/carts/<%= cart.id %>" class="ml-3" data-method="delete" data-confirm="삭제하시겠습니까?"><%= icon("fas", "times-circle") %></a>
-                <input type="checkbox" data-remote="true" data-url="/carts/<%= cart.id %>" data-params="data=10" data-method="delete">
               </td>
             </tr>
           <% end %>
