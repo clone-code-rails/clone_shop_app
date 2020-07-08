@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/create'
+  get 'orders/show'
   get 'carts/create'
   root "home#index"
   
@@ -7,7 +9,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :packs, only: [:index, :show]
 
-  resources :carts, only: [:create, :index]
+  resources :carts, only: [:create, :index, :destroy]
 
+  resources :orders, only: [:create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

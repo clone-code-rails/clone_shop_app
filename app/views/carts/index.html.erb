@@ -16,36 +16,62 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <a href="" class="ml-3"><%= icon("fas", "times-circle") %></a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-              <a href="" class="ml-3"><%= icon("fas", "times-circle") %></a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>
-              <span>2000원</span>
-            </td>
-            <td>
-              <a href="" class="ml-3"><%= icon("fas", "times-circle") %></a>
-            </td>
-          </tr>
+          <% @carts.each do |cart| %>
+            <tr>
+              <th scope="row"><%= cart.pack.product_name %></th>
+              <td><%= number_to_currency(cart.pack.price) %></td>
+              <td><%= cart.quantity %></td>
+              <td><%= number_to_currency(cart.pack.price * cart.quantity) %></td>
+              <td>
+                <a href="/carts/<%= cart.id %>" class="ml-3" data-method="delete" data-confirm="삭제하시겠습니까?"><%= icon("fas", "times-circle") %></a>
+                <input type="checkbox" data-remote="true" data-url="/carts/<%= cart.id %>" data-params="data=10" data-method="delete">
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
   </div>
+  <% if @carts.present? %>
+    <hr/>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title">상품 합계</h5>
+              <p class="card-text"><%= number_to_currency(@product_price) %></p>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <h5 class="card-title">배송비</h5>
+              <p class="card-text"><%= number_to_currency(@shipping_fee) %></p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-between mt-3">
+              <h5 class="card-title">최종 결제 금액</h5>
+              <p class="card-text"><%= number_to_currency(@total_price) %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-6">
+        <a href="/packs" class="btn btn-dark">장바구니 담으러가기</a>
+      </div>
+      <div class="col-6 d-flex justify-content-end">
+        <form action="/orders" method="POST">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <% @carts.each do |cart| %>
+            <input type="hidden" name="cart_id[]" value="<%= cart.id %>">
+          <% end %>
+
+          <button type="submit" class="btn btn-outline-dark">주문하기</button>
+        </form> 
+      </div>
+    </div>
+
+  <% end %>
 </div>
