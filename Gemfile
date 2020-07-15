@@ -12,6 +12,11 @@ gem 'pry-rails'
 gem 'font-awesome-sass', '~> 5.13.0'
 gem 'any_login'
 
+gem 'httparty'
+gem 'iamport'
+
+gem 'rails-erd', group: :development
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.2.3"
 # Use sqlite3 as the database for Active Record
