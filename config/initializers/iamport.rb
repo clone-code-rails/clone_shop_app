@@ -1,4 +1,4 @@
 Iamport.configure do |config|
-  config.api_key = "9404870238699812"
-  config.api_secret = "ZcuuIVrDmw6dg9rEX6yWXHcrqIcQ7Mc7YHCHC3lYArcRBDvzJ3vHLI9bql2y7fG6WjNzn8xYAKQcolL8"
+  config.api_key = ENV[:API_KEY]
+  config.api_secret = ENV[:SECRET_KEY]
 end
