@@ -3,15 +3,51 @@ class CartsController < ApplicationController
 
   def index
     @carts = current_user.carts
+
+    @product_price = 0
+    @carts.each do |cart|
+      # @product_price = @product_price + cart.quantity * cart.pack.price
+      @product_price += cart.quantity * cart.pack.price
+    end
+
+    if @product_price > 15000
+      @shipping_fee = 0
+    else
+      @shipping_fee = 2500
+    end
+
+    @total_price = @product_price + @shipping_fee
   end
 
   def create
-    Cart.create(
+    cart = Cart.new(
       pack_id: params[:pack_id],
       user_id: current_user.id,
-      quantity: params[:quantity]
+      quantity: params[:quantity],
     )
 
+    sample_carts = current_user.carts
+
+    # 기존에 내가 똑같은 팩을 등록했는지 찾기
+    remain_cart = sample_carts.find_by(pack_id: cart.pack_id)
+
+    if remain_cart.present?
+      sum_quantity = remain_cart.quantity + cart.quantity.to_i
+
+      remain_cart.update(quantity: sum_quantity)
+    else
+      cart.save
+    end
+
+    flash[:notice] = "장바구니에 상품이 담겼습니다. 장바구니로 이동하겠습니까?"
+
+    redirect_back(fallback_location: root_path)
+  end
+
+  def destroy
+    cart = Cart.find(params[:id])
+
+    cart.destroy
     redirect_back(fallback_location: root_path)
   end
 end
