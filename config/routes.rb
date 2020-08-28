@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get 'orders/create'
-  get 'orders/show'
-  get 'carts/create'
   root "home#index"
+
+  get "mypage" => "home#mypage"
   
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
