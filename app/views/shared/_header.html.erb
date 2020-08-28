@@ -10,9 +10,15 @@
       <a class="nav-item nav-link" href="#">추천</a>
       <a class="nav-item nav-link" href="#">공지</a>
       <% if user_signed_in? %>
+<<<<<<< HEAD
         <a class="nav-item nav-link" href="/carts">
           <%= icon('fas', 'cart-arrow-down') %>
         </a>
+=======
+      <a class="nav-item nav-link" href="/carts">
+        <%= icon('fas', 'cart-arrow-down') %>
+      </a>
+>>>>>>> 40a62a9ecb4810512abd98d64a88b656d161fe79
         <div class="dropdown">
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.email %>
