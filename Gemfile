@@ -8,7 +8,6 @@ gem "activeadmin"
 gem "bootstrap", "~> 4.5.0"
 gem "jquery-rails"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-gem 'pry-rails'
 gem 'font-awesome-sass', '~> 5.13.0'
 
 
