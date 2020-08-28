@@ -15,40 +15,6 @@
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <a href="#">
-                <%= icon('fas', 'times-circle') %>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-              <a href="#">
-                <%= icon('fas', 'times-circle') %>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            <td>
-              <a href="#">
-                <%= icon('fas', 'times-circle') %>
-              </a>
-            </td>
-          </tr>
-=======
           <% @carts.each do |cart| %>
             <tr>
               <th scope="row"><%= cart.pack.product_name %></th>
@@ -60,7 +26,6 @@
               </td>
             </tr>
           <% end %>
->>>>>>> 3b225211b2051db5cbe37f1fcaeec8a52d7da95e
         </tbody>
       </table>
     </div>
